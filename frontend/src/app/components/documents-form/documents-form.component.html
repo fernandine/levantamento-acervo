@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-toolbar color="primary">Paciente</mat-toolbar>
+
+  <mat-card-content >
+    <form [formGroup]="form" class="min-width">
+
+      <mat-form-field class="full-width">
+        <mat-label>Nome completo</mat-label>
+        <input matInput formControlName="name" #name />
+        <mat-hint align="end">{{ name.value.length }} / 50</mat-hint>
+        <mat-error *ngIf="form.get('name')?.invalid">
+          {{ getErrorMessage('name') }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Contato</mat-label>
+        <input matInput formControlName="phone" #phone />
+        <mat-hint align="end">{{ phone.value.length }} / 50</mat-hint>
+        <mat-error *ngIf="form.get('phone')?.invalid">
+          {{ getErrorMessage('phone') }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Data da consulta</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="appointmentDate" #appointmentDate />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('appointmentDate')?.invalid">
+          {{ getErrorMessage('appointmentDate') }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Dentista Responsável</mat-label>
+        <input matInput formControlName="dentist" #dentist />
+        <mat-hint align="end">{{ dentist.value.length }} / 50</mat-hint>
+        <mat-error *ngIf="form.get('dentist')?.invalid">
+          {{ getErrorMessage('dentist') }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Tratamento</mat-label>
+        <input matInput formControlName="description" #description />
+        <mat-hint align="end">{{ description.value.length }} / 200</mat-hint>
+        <mat-error *ngIf="form.get('description')?.invalid">
+          {{ getErrorMessage('description') }}
+        </mat-error>
+      </mat-form-field>
+
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions class="actions-center">
+    <button mat-raised-button color="primary" (click)="onSubmit()" type="submit">
+      Salvar
+    </button>
+    <button mat-raised-button (click)="onCancel()" class="btn-space" type="button">
+      Cancelar
+    </button>
+  </mat-card-actions>
+</mat-card>

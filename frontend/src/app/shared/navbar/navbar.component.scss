@@ -1,0 +1,30 @@
+
+ul.navbar-login {
+  list-style: none;
+  }
+.nav-item {
+  display: flex;
+  flex-direction: row;
+}
+  .mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-login {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+  }
+
+  .navbar-login li {
+    margin-left: 5rem;
+  }
+
+  .list {
+    display: flex;
+    align-items: center;
+  }

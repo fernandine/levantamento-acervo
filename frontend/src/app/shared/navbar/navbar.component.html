@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <span style="font-style:italic;">Controle de Pacientes</span>
+  <div class="list">
+    <ul class="navbar-login">
+      <li class="nav-item">
+      <div *ngIf="!(isLoggedIn)">
+        <a mat-button (click)="login()">
+          <mat-icon>login</mat-icon>
+          <span>Login</span>
+        </a>
+        <a mat-button (click)="register()" >
+          <mat-icon>person_add</mat-icon>
+          <span>Criar conta</span>
+        </a>
+      </div>
+
+      <div *ngIf="isLoggedIn">
+
+        <a mat-button>Olá, {{ firstname }}</a>
+
+        <a mat-button (click)="logout()">Sair</a>
+      </div>
+    </li>
+    <li class="nav-item px-5">
+
+    </li>
+  </ul>
+</div>
+</mat-toolbar>

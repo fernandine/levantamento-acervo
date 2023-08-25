@@ -1,0 +1,38 @@
+<mat-card>
+  <mat-toolbar color="primary" class="toolbar">
+    Levantamento de acervo
+
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="onPDF()"
+      class="action-column-header"
+      >
+      Relatório
+      </button>
+
+  </mat-toolbar>
+
+    <div class="mat-elevation-z8">
+
+    <app-documents-list
+    [data]="documents"
+        (add)="onAdd()"
+        (edit)="onEdit($event)"
+        (remove)="onRemove($event)"
+        ></app-documents-list>
+
+  <ng-template #loading>
+    <div class="loading-spinner">
+      <div style="color: rgb(2, 2, 2);">
+      <h1>Não há nenhuma informação cadastrada</h1>
+      <span>Clique no botão ao lado e cadastre seus dados.</span>
+      <button (click)="onAdd()" color="primary" style="margin-left: 8px;">
+        Cadastrar acervo
+      </button>
+    </div>
+    </div>
+
+  </ng-template>
+    </div>
+</mat-card>

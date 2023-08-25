@@ -1,0 +1,92 @@
+<mat-table [dataSource]="data">
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Assunto</mat-header-cell>
+    <mat-cell *matCellDef="let data">{{ data.name }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="area">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Área</mat-header-cell>
+    <mat-cell *matCellDef="let data">{{ data.area }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="documentaryStudy">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Estudo Documental</mat-header-cell>
+    <mat-cell *matCellDef="let data">{{ data.documentaryStudy }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="legalAnalysis">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Análise Jurícia</mat-header-cell>
+    <mat-cell *matCellDef="let data">{{ data.legalAnalysis }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="submission">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Submissão à comissão Permanente de Avaliação de Documentos</mat-header-cell>
+    <mat-cell *matCellDef="let data">{{ data.submission }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="digitalQuantitative">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Quantitativo Total de Acervo Físico</mat-header-cell>
+    <mat-cell *matCellDef="let data">{{ data.digitalQuantitative }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="physicalQuantitative">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Quantitativo Total de Acervo Digital</mat-header-cell>
+    <mat-cell *matCellDef="let data">{{ data.physicalQuantitative }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="physicalDocument">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Quantitativo Total de Acervo Digital</mat-header-cell>
+    <mat-cell *matCellDef="let data">{{ data.physicalDocument.currentPhase }}</mat-cell>
+    <mat-cell *matCellDef="let data">{{ data.physicalDocument.intermediatePhase }}</mat-cell>
+    <mat-cell *matCellDef="let data">{{ data.physicalDocument.finalDestination }}</mat-cell>
+
+  </ng-container>
+
+  <ng-container matColumnDef="digitalDocument">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Quantitativo Total de Acervo Digital</mat-header-cell>
+    <mat-cell *matCellDef="let data">{{ data.physicalDocument.currentPhase }}</mat-cell>
+    <mat-cell *matCellDef="let data">{{ data.physicalDocument.intermediatePhase }}</mat-cell>
+    <mat-cell *matCellDef="let data">{{ data.physicalDocument.finalDestination }}</mat-cell>
+  </ng-container>
+
+  <ng-container class="column-all" matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef class="action-column">
+      <button
+      mat-raised-button
+      color="accent"
+      (click)="onAdd()"
+      class="action-column-header"
+      >
+      Dashboard
+      </button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let patient">
+      <!--
+      <button mat-icon-button color="accent" aria-label="Detalhes" (click)="onReport(protocol)">
+        <mat-icon>info</mat-icon>
+      </button>
+      <button--
+        mat-icon-button
+        color="primary"
+        aria-label="Editar"
+        (click)="onEdit(patient)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button-->
+
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="Deletar"
+        (click)="onRemove(patient)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
