@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { DataSurvey } from '../../common/data-survey';
 import { DocumentService } from '../../services/document.service';
@@ -5,7 +6,14 @@ import { DocumentService } from '../../services/document.service';
 @Component({
   selector: 'app-documents-list',
   templateUrl: './documents-list.component.html',
-  styleUrls: ['./documents-list.component.scss']
+  styleUrls: ['./documents-list.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class DocumentsListComponent {
 
@@ -24,9 +32,9 @@ export class DocumentsListComponent {
     'legalAnalysis',
     'digitalQuantitative',
     'physicalQuantitative',
+    //'digitalDocument',
     'physicalDocument',
-    'digitalDocument',
-    'actions'
+    'expand'
   ];
 
   onDetails(record: DataSurvey) {

@@ -52,7 +52,7 @@ export class DocumentsComponent {
   }
 
   onAdd() {
-    this.router.navigate(['new'], { relativeTo: this.route });
+    this.router.navigate(['dashboard'], { relativeTo: this.route });
   }
 
   onEdit(data: DataSurvey) {

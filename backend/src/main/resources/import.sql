@@ -16,7 +16,17 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 1);
 -- -------------------------------------------
 -- Documento físico
 -- -------------------------------------------
-INSERT INTO tb_data_survey (name, area, legal_analysis, submission, digital_quantitative, documentary_study, physical_quantitative) VALUES ('PROCESSO SELETIVO', 'GER.DEP.PESSOAL', TRUE, TRUE, FALSE, 1652, 685);
+INSERT INTO tb_data_survey (name, area, legal_analysis, submission, digital_quantitative, documentary_study, physical_quantitative) VALUES ('PROCESSO SELETIVO', 'GER.DEP.PESSOAL', TRUE, FALSE, FALSE, 1652, 685);
+INSERT INTO tb_data_survey (name, area, legal_analysis, submission, digital_quantitative, documentary_study, physical_quantitative) VALUES ('PROCESSO SELETIVO', 'GER.DEP.PESSOAL', FALSE, TRUE, TRUE, 1652, 685);
+INSERT INTO tb_data_survey (name, area, legal_analysis, submission, digital_quantitative, documentary_study, physical_quantitative) VALUES ('PROCESSO SELETIVO', 'GER.DEP.PESSOAL', TRUE, FALSE, FALSE, 1652, 685);
+INSERT INTO tb_data_survey (name, area, legal_analysis, submission, digital_quantitative, documentary_study, physical_quantitative) VALUES ('PROCESSO SELETIVO', 'GER.DEP.PESSOAL', FALSE, TRUE, TRUE, 1652, 685);
+
 INSERT INTO tb_physical_document (current_phase, intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, TRUE, 1);
 INSERT INTO tb_digital_document (current_phase, intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, TRUE, 1);
+INSERT INTO tb_physical_document (current_phase, intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, TRUE, 2);
+INSERT INTO tb_digital_document (current_phase, intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, TRUE, 2);
+INSERT INTO tb_physical_document (current_phase, intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, TRUE, 3);
+INSERT INTO tb_digital_document (current_phase, intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, TRUE, 3);
+INSERT INTO tb_physical_document (current_phase, intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, TRUE, 4);
+INSERT INTO tb_digital_document (current_phase, intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, TRUE, 4);
 

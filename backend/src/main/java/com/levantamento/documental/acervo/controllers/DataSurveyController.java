@@ -1,6 +1,7 @@
 package com.levantamento.documental.acervo.controllers;
 
 import com.levantamento.documental.acervo.DTOs.DataSurveyDto;
+import com.levantamento.documental.acervo.entities.dashboard.Card;
 import com.levantamento.documental.acervo.services.DataSurveyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class DataSurveyController {
     public ResponseEntity<List<DataSurveyDto>> findAll() {
         List<DataSurveyDto> list = service.findAll();
         return ResponseEntity.ok().body(list);
+    }
+    @GetMapping("card-totals")
+    public ResponseEntity<Card> calculateCardTotals() {
+        Card card = service.calculateCardTotalsWithPercentages();
+        return ResponseEntity.ok(card);
     }
 
     //@PreAuthorize("hasAnyRole('ROLE_DENTIST', 'ROLE_ADMIN')")

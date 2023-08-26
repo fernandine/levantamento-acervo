@@ -1,10 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { Cards } from 'src/app/common/cards';
-import { DataSurvey } from 'src/app/common/data-survey';
-import { DocumentService } from '../../services/document.service';
-
+/*
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -33,54 +27,4 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K' },
   { position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca' },
 ];
-
-@Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
-})
-export class DashboardComponent {
-  bigChart = [];
-  card!: Cards;
-  dataList: DataSurvey[] = [];
-  documents: DataSurvey[] = [];
-
-  pieChart = [];
-
-  cards: DataSurvey[] = [];
-
-  readonly displayedColumns = [
-    'name',
-    'physicalDocument',
-    'digitalDocument',
-
-  ];  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
-
-
-  constructor(private service: DocumentService) { }
-
-  ngOnInit() {
-    this.refresh();
-    this.service.cards().subscribe(
-      (data) => {
-        this.card = data;
-      },
-      (error) => {
-        console.error('Error fetching documents:', error);
-      }
-    );
-  }
-  refresh() {
-    this.service.list().subscribe(
-      (data) => {
-        this.dataList = data;
-      },
-      (error) => {
-        console.error('Error fetching documents:', error);
-      }
-    );
-  }
-}
-
+*/

@@ -8,7 +8,7 @@ import { RegisterComponent } from './authentication/register/register.component'
 
 const routes: Routes = [
 
-  { path: '', pathMatch: 'full', redirectTo: 'auth-login' },
+{ path: '', pathMatch: 'full', redirectTo: 'auth-login' },
 { path: 'auth-login', component: LoginComponent },
 { path: 'register', component: RegisterComponent },
 { path: 'recover-password', component: RecoverPasswordComponent },
@@ -16,12 +16,10 @@ const routes: Routes = [
 { path: 'recover-success', component: RecoverSuccessComponent },
 
 {
-  path: 'patients',
+  path: 'documents',
 
     loadChildren: () => import('./components/document.module').then(m => m.DocumentModule)
   }
-  //{ path: 'patients/:id', component: PatientReaderComponent, canActivate: [AuthGuard] }
-
   ];
 
 @NgModule({

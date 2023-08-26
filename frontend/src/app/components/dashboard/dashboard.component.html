@@ -1,1 +1,72 @@
-<p>dashboard works!</p>
+<div>
+    <app-widget-area [data]="bigChart"></app-widget-area>
+</div>
+
+<br>
+
+<mat-divider></mat-divider>
+
+<br>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+  <mat-card fxFlex="25" *ngIf="card">
+    <app-widget-card label="Tipos Documentais" [total]="card.qtyName"></app-widget-card>
+</mat-card>
+  <mat-card fxFlex="25" *ngIf="card">
+      <app-widget-card label="Estudos Documentais" [total]="card.qtyDocumentaryStudy" [percentage]="card.percentageDocumentaryStudy"></app-widget-card>
+  </mat-card>
+  <mat-card fxFlex="25" *ngIf="card">
+      <app-widget-card label="Análises Jurídicas" [total]="card.qtyLegalAnalysis" [percentage]="card.percentageDocumentaryStudy"></app-widget-card>
+  </mat-card>
+
+  <mat-card fxFlex="25" *ngIf="card">
+      <app-widget-card label="Quantitativo de Submissão" [total]="card.qtySubmission" [percentage]="card.percentageDocumentaryStudy"></app-widget-card>
+  </mat-card>
+</div>
+
+<br>
+
+<mat-divider></mat-divider>
+
+<br>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <div fxFlex="60">
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataList">
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell class="column-header" *matHeaderCellDef>Assunto</mat-header-cell>
+            <mat-cell *matCellDef="let data">{{ data.name }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="physicalDocument" *ngFor="let doc of dataList">
+            <mat-header-cell class="column-header" *matHeaderCellDef>Quantitativo Total de Acervo Digital</mat-header-cell>
+            <mat-cell *matCellDef="let data">Fase corrente: {{ doc.physicalDocument.currentPhase }}</mat-cell>
+            <mat-cell *matCellDef="let data">Fase intermediária: {{ doc.physicalDocument.intermediatePhase }}</mat-cell>
+            <mat-cell *matCellDef="let data">Destinação final: {{ doc.physicalDocument.finalDestination }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="digitalDocument">
+            <mat-header-cell class="column-header" *matHeaderCellDef>Quantitativo Total de Acervo Digital</mat-header-cell>
+            <mat-cell *matCellDef="let data">Fase corrente: {{ data.physicalDocument.currentPhase }}</mat-cell>
+            <mat-cell *matCellDef="let data">Fase intermediária: {{ data.physicalDocument.intermediatePhase }}</mat-cell>
+            <mat-cell *matCellDef="let data">Destinação final: {{ data.physicalDocument.finalDestination }}</mat-cell>
+          </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+    </div>
+
+    </div>
+    <div fxFlex="40">
+        <app-widget-pie [data]="pieChart"></app-widget-pie>
+    </div>
+</div>
+
+<br>
+<br>
+<br>

@@ -19,7 +19,6 @@ export class NavbarComponent {
     private router: Router,
     private authService: AuthService,
     private loginService: LoginService,
-    private userService: UserService
     ) { }
 
   ngOnInit() {
@@ -37,7 +36,7 @@ export class NavbarComponent {
     }
 
   getPatients(){
-    this.router.navigate(['/patients']);
+    this.router.navigate(['/documents']);
   }
   login() {
     this.router.navigate(['/auth-login']);

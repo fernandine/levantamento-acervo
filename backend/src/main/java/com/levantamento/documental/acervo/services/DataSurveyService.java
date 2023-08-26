@@ -1,12 +1,12 @@
 package com.levantamento.documental.acervo.services;
 
 import com.levantamento.documental.acervo.DTOs.DataSurveyDto;
-import com.levantamento.documental.acervo.DTOs.DigitalDocumentDto;
 import com.levantamento.documental.acervo.entities.DataSurvey;
-import com.levantamento.documental.acervo.entities.DigitalDocument;
+import com.levantamento.documental.acervo.entities.dashboard.Card;
 import com.levantamento.documental.acervo.repositories.DataSurveyRepository;
 import com.levantamento.documental.acervo.services.exceptions.DatabaseException;
 import com.levantamento.documental.acervo.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +84,40 @@ public class DataSurveyService {
 
         dto.getDigitalDocument().setCurrentPhase(false);
 
-
     }
+    private Boolean documentaryStudy;
+    @Column(name = "legal_analysis")
+    private Boolean legalAnalysis;
+    @Column(name = "submission")
+    private Boolean submission;
+    @Transactional(readOnly = true)
+    public Card calculateCardTotalsWithPercentages() {
+        List<DataSurvey> list = repository.findAll();
+        long documentaryStudy = list.size();
+        long legalAnalysis = list.size();
+        long submission = list.size();
+        long trueQtyDocumentaryStudy = list.stream().filter(DataSurvey::getDocumentaryStudy).count();
+        double percentageDocumentaryStudy = ((double) trueQtyDocumentaryStudy / documentaryStudy) * 100;
+
+        long trueQtyLegalAnalysis = list.stream().filter(DataSurvey::getLegalAnalysis).count();
+        double percentageLegalAnalysis = ((double) trueQtyLegalAnalysis / legalAnalysis) * 100;
+
+        long trueQtySubmission = list.stream().filter(DataSurvey::getSubmission).count();
+        double percentageSubmission = ((double) trueQtySubmission / submission) * 100;
+
+        Card card = new Card();
+        card.setId(card.getId());
+
+        card.setQtyLegalAnalysis(legalAnalysis);
+        card.setQtyDocumentaryStudy(documentaryStudy);
+        card.setQtySubmission(submission);
+
+        card.setPercentageDocumentaryStudy(percentageDocumentaryStudy);
+        card.setPercentageLegalAnalysis(percentageLegalAnalysis);
+        card.setPercentageSubmission(percentageSubmission);
+
+        return card;
+    }
+
+
 }

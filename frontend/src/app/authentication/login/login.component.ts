@@ -35,7 +35,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe((success) => {
         if (success) {
-          this.router.navigate(['/patients']);
+          this.router.navigate(['/documents']);
 console.log(this.loginForm);
         }
       });
