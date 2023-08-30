@@ -1,10 +1,8 @@
 package com.levantamento.documental.acervo.DTOs;
 
+import com.levantamento.documental.acervo.entities.DataSurvey;
 import com.levantamento.documental.acervo.entities.DigitalDocument;
 import com.levantamento.documental.acervo.entities.PhysicalDocument;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToOne;
 
 import java.io.Serializable;
 
@@ -14,30 +12,55 @@ public class DataSurveyDto implements Serializable {
     private String name;
     private String area;
     private Boolean documentaryStudy;
+    private Boolean classification;
     private Boolean legalAnalysis;
+    private Boolean auxiliaryDocument;
+    private Boolean ged;
     private Boolean submission;
     private Long digitalQuantitative;
     private Long physicalQuantitative;
-
-    private DigitalDocumentDto digitalDocument;
-
-    private PhysicalDocumentDto physicalDocument;
+    private Long microfilmQuantitative;
+    private DigitalDocument digitalDocument;
+    private PhysicalDocument physicalDocument;
     public DataSurveyDto() {
     }
 
-    public DataSurveyDto(Long id, String name, String area, Boolean documentaryStudy, Boolean legalAnalysis,
-                         Boolean submission, Long digitalQuantitative, Long physicalQuantitative,
-                         DigitalDocumentDto digitalDocument, PhysicalDocumentDto physicalDocument) {
+    public DataSurveyDto(Long id, String name, String area, Boolean documentaryStudy, Boolean classification,
+                         Boolean legalAnalysis, Boolean auxiliaryDocument, Boolean ged, Boolean submission,
+                         Long digitalQuantitative, Long physicalQuantitative, Long microfilmQuantitative,
+                         DigitalDocument digitalDocument, PhysicalDocument physicalDocument) {
         this.id = id;
         this.name = name;
         this.area = area;
         this.documentaryStudy = documentaryStudy;
+        this.classification = classification;
         this.legalAnalysis = legalAnalysis;
+        this.auxiliaryDocument = auxiliaryDocument;
+        this.ged = ged;
         this.submission = submission;
         this.digitalQuantitative = digitalQuantitative;
         this.physicalQuantitative = physicalQuantitative;
+        this.microfilmQuantitative = microfilmQuantitative;
         this.digitalDocument = digitalDocument;
         this.physicalDocument = physicalDocument;
+    }
+
+    public DataSurveyDto(DataSurvey entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.area = entity.getArea();
+        this.documentaryStudy = entity.getDocumentaryStudy();
+        this.classification = entity.getClassification();
+        this.legalAnalysis = entity.getLegalAnalysis();
+        this.auxiliaryDocument = entity.getAuxiliaryDocument();
+        this.ged = entity.getGed();
+        this.submission = entity.getSubmission();
+        this.digitalQuantitative = entity.getDigitalQuantitative();
+        this.physicalQuantitative = entity.getPhysicalQuantitative();
+        this.microfilmQuantitative = entity.getMicrofilmQuantitative();
+        this.digitalDocument = entity.getDigitalDocument();
+        this.physicalDocument = entity.getPhysicalDocument();
+
     }
 
     public Long getId() {
@@ -104,19 +127,51 @@ public class DataSurveyDto implements Serializable {
         this.physicalQuantitative = physicalQuantitative;
     }
 
-    public DigitalDocumentDto getDigitalDocument() {
+    public Boolean getClassification() {
+        return classification;
+    }
+
+    public void setClassification(Boolean classification) {
+        this.classification = classification;
+    }
+
+    public Boolean getAuxiliaryDocument() {
+        return auxiliaryDocument;
+    }
+
+    public void setAuxiliaryDocument(Boolean auxiliaryDocument) {
+        this.auxiliaryDocument = auxiliaryDocument;
+    }
+
+    public Boolean getGed() {
+        return ged;
+    }
+
+    public void setGed(Boolean ged) {
+        this.ged = ged;
+    }
+
+    public Long getMicrofilmQuantitative() {
+        return microfilmQuantitative;
+    }
+
+    public void setMicrofilmQuantitative(Long microfilmQuantitative) {
+        this.microfilmQuantitative = microfilmQuantitative;
+    }
+
+    public DigitalDocument getDigitalDocument() {
         return digitalDocument;
     }
 
-    public void setDigitalDocument(DigitalDocumentDto digitalDocument) {
+    public void setDigitalDocument(DigitalDocument digitalDocument) {
         this.digitalDocument = digitalDocument;
     }
 
-    public PhysicalDocumentDto getPhysicalDocument() {
+    public PhysicalDocument getPhysicalDocument() {
         return physicalDocument;
     }
 
-    public void setPhysicalDocument(PhysicalDocumentDto physicalDocument) {
+    public void setPhysicalDocument(PhysicalDocument physicalDocument) {
         this.physicalDocument = physicalDocument;
     }
 }

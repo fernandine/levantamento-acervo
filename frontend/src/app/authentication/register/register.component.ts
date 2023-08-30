@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -10,11 +11,11 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
 
   registerForm!: FormGroup;
-  mobileNumber: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private service: UserService
   ) {}
 
   ngOnInit(): void {
@@ -23,19 +24,7 @@ export class RegisterComponent {
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      passConfirmation: ['', Validators.required, this.passwordMatchValidator],
     });
-
-  }
-
-  get form() {
-    return this.registerForm.controls;
-  }
-
-  passwordMatchValidator(formControl: FormControl) {
-    const password = formControl.get('password')?.value;
-    const passConfirmation = formControl.get('passConfirmation')?.value;
-    return password === passConfirmation ? null : { mismatch: true };
   }
 
   onReturn() {
@@ -43,9 +32,17 @@ export class RegisterComponent {
   }
 
   onRegister() {
-    console.log('Dados enviados:', this.registerForm.value);
     if (this.registerForm.invalid) {
       return;
     }
+    this.service.createUser(this.registerForm.value).subscribe(
+      (response) => {
+        console.log('User registered successfully:', response);
+      },
+      (error) => {
+        console.error('Error registering user:', error);
+      }
+    );
   }
 }
+

@@ -1,45 +1,57 @@
-<mat-card>
-  <mat-toolbar color="primary" class="toolbar">
-    Levantamento de acervo
 
-    <button
-      mat-raised-button
-      color="accent"
-      (click)="onPDF()"
-      class="action-column-header"
-      >
-      Relatório
-      </button>
-      <button
-      mat-raised-button
-      color="accent"
-      (click)="onAdd()"
-      class="action-column-header"
-      >
-      Dashboard
-      </button>
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2px" class="stats-cards">
+  <mat-card fxFlex="20">
+      <app-widget-card label="Estudos Documentais" total="151" percentage="91.5" [data]="cards"></app-widget-card>
+  </mat-card>
+  <mat-card fxFlex="20">
+      <app-widget-card label="Existência De Classificação" total="57" percentage="34.5" [data]="cards"></app-widget-card>
+  </mat-card>
+  <mat-card fxFlex="20">
+      <app-widget-card label="Análise Jurídica" total="102" percentage="61.8" [data]="cards"></app-widget-card>
+  </mat-card>
+  <mat-card fxFlex="20">
+    <app-widget-card label="Presente no Doc. Auxiliar" total="57" percentage="34.5" [data]="cards"></app-widget-card>
+</mat-card>
+<mat-card fxFlex="20">
+  <app-widget-card label="Existência de GED" total="48" percentage="29" [data]="cards"></app-widget-card>
+</mat-card>
+</div>
+<div>
+  <app-widget-area [data]="bigChart"></app-widget-area>
+</div>
+  <mat-card>
+    <mat-toolbar color="primary" class="toolbar">
+      Levantamento de acervo
   </mat-toolbar>
-
-    <div class="mat-elevation-z8">
 
     <app-documents-list
     [data]="documents"
-        (add)="onAdd()"
-        (edit)="onEdit($event)"
-        (remove)="onRemove($event)"
-        ></app-documents-list>
+></app-documents-list>
+<br>
 
-  <ng-template #loading>
-    <div class="loading-spinner">
-      <div style="color: rgb(2, 2, 2);">
-      <h1>Não há nenhuma informação cadastrada</h1>
-      <span>Clique no botão ao lado e cadastre seus dados.</span>
-      <button (click)="onAdd()" color="primary" style="margin-left: 8px;">
-        Cadastrar acervo
-      </button>
-    </div>
-    </div>
+<mat-divider></mat-divider>
+<br>
 
-  </ng-template>
+<div fxLayout="row">
+  <div class="position-documents" fxFlex="65">
+<div>
+  <app-digital
+  [data]="documents"
+></app-digital>
+</div>
+
+<div style="margin-top: 20px;">
+  <app-physical
+  [data]="documents"
+></app-physical>
+</div>
+
     </div>
+    <div fxFlex="35">
+        <app-widget-pie [pie]="pieChart"></app-widget-pie>
+    </div>
+</div>
 </mat-card>
+<br>
+<br>
+

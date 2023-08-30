@@ -35,7 +35,7 @@ export class NavbarComponent {
       return currentUser ? currentUser.firstname : '';
     }
 
-  getPatients(){
+  getDocuments(){
     this.router.navigate(['/documents']);
   }
   login() {

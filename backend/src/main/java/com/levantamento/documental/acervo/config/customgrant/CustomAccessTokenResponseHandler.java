@@ -1,5 +1,5 @@
 package com.levantamento.documental.acervo.config.customgrant;
-/*
+
 import com.levantamento.documental.acervo.entities.User;
 import com.levantamento.documental.acervo.repositories.UserRepository;
 import jakarta.servlet.ServletException;
@@ -75,4 +75,4 @@ public class CustomAccessTokenResponseHandler implements AuthenticationSuccessHa
 
         return successCodeMessageMap;
     }
-}*/
+}

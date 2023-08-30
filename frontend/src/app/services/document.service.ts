@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, Observable, of } from 'rxjs';
+import { first, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Cards } from '../common/cards';
 import { DataSurvey } from '../common/data-survey';
+import { DataPage } from '../common/data-page';
+import { Page } from '../common/pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -16,45 +18,12 @@ export class DocumentService {
 
   constructor(private httpClient: HttpClient) { }
 
-  list(): Observable<DataSurvey[]> {
-    return this.httpClient.get<DataSurvey[]>(this.docUrl);
-  }
+  list(page: number, size: number): Observable<Page<DataSurvey>> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
 
-  cards(): Observable<Cards> {
-    const url = `${this.docUrl}/card-totals`;
-    return this.httpClient.get<Cards>(url);
-  }
-
-  loadById(id: string) {
-    if (this.cache.length > 0) {
-      const record = this.cache.find(cache => `${cache.id}` === `${id}`);
-      return record != null ? of(record) : this.getById(id);
-    }
-    return this.getById(id);
-  }
-
-  getById(id: string) {
-    return this.httpClient.get<DataSurvey>(`${this.docUrl}/${id}`).pipe(first());
-  }
-
-  save(record: Partial<DataSurvey>) {
-    if (record.id) {
-      return this.update(record);
-    }
-    return this.create(record);
-  }
-
-  create(record: Partial<DataSurvey>) {
-    return this.httpClient.post<DataSurvey>(this.docUrl, record).pipe(first());
-  }
-
-  update(record: Partial<DataSurvey>) {
-    return this.httpClient.put<DataSurvey>(`${this.docUrl}/${record.id}`, record).pipe(first());
-  }
-
-
-  remove(id: string) {
-    return this.httpClient.delete(`${this.docUrl}/${id}`).pipe(first());
+    return this.httpClient.get<Page<DataSurvey>>(`${this.docUrl}`, { params });
   }
 
   pieChart() {

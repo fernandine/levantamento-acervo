@@ -1,18 +1,17 @@
 mat-card {
-  max-width: 90%;
+  max-width: 95%;
   margin: 2em auto;
   text-align: center;
 }
 
-.loading-spinner {
-  padding: 25px;
-  background: rgba(0, 0, 0, 0.096);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .toolbar {
   display: flex;
   justify-content: space-between;
 }
 
+.container {
+  max-width: 95%;
+display: flex;
+margin: 2em auto;
+
+}

@@ -1,0 +1,50 @@
+<h2>Documento Digital</h2>
+<mat-table fxLayout="column" [dataSource]="dataSource">
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell fxFlex="50%" *matHeaderCellDef>Tipo Documental</mat-header-cell>
+    <mat-cell fxFlex="50%" *matCellDef="let element"> {{ element.name }} </mat-cell>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="currentPhase">
+    <mat-header-cell *matHeaderCellDef>Fase Corrente</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span *ngIf="element.digitalDocument.currentPhase; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template
+      >
+    </mat-cell>
+  </ng-container>
+  <!-- Position Column -->
+  <ng-container matColumnDef="intermediatePhase">
+    <mat-header-cell *matHeaderCellDef>Fase Intermediária</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span *ngIf="element.digitalDocument.intermediatePhase; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template
+      >
+    </mat-cell>
+  </ng-container>
+  <!-- Position Column -->
+  <ng-container matColumnDef="finalDestination">
+    <mat-header-cell *matHeaderCellDef>Destinação final</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span *ngIf="element.digitalDocument.finalDestination; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template
+      >
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<mat-paginator style="background-color: rgb(198, 224, 224);" [pageSizeOptions]="[5, 2, 10, 20]" showFirstLastButtons></mat-paginator>
+

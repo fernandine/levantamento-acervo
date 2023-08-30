@@ -12,13 +12,12 @@ import { Cards } from '../../../common/cards';
 export class CardComponent implements OnInit {
 
   @Input() label: string = '';
-  @Input() total: number = 0;
-  @Input() percentage: number = 0;
-  @Input() data = [];
+  @Input() total: string = '';
+  @Input() percentage: string = '';
+  @Input() data!: number[];
 
   Highcharts = Highcharts;
   chartOptions = {};
-
 
   constructor() { }
 

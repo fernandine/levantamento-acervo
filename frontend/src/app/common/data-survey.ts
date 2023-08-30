@@ -8,10 +8,14 @@ export interface DataSurvey {
     area: string;
     documentaryStudy: boolean;
     legalAnalysis: boolean;
+    classification: boolean,
+    ged: boolean,
+    auxiliaryDocument: boolean,
     submission: boolean;
     digitalQuantitative: number;
     physicalQuantitative: number;
-    digitalDocument: DigitalDocument;
-    physicalDocument: PhysicalDocument;
+    microfilmQuantitative: number;
+    digitalDocument?: DigitalDocument;
+    physicalDocument?: PhysicalDocument;
   }
 

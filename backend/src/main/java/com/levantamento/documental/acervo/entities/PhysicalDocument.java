@@ -1,5 +1,6 @@
 package com.levantamento.documental.acervo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -11,13 +12,12 @@ public class PhysicalDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "current_phase")
-    private Boolean currentPhase;
     @Column(name = "intermediate_phase")
     private Boolean intermediatePhase;
     @Column(name = "final_destination")
     private Boolean finalDestination;
 
+    @JsonIgnore
     @OneToOne
     @MapsId
     @JoinColumn(name = "data_survey_id")
@@ -26,10 +26,9 @@ public class PhysicalDocument {
     public PhysicalDocument() {
     }
 
-    public PhysicalDocument(Long id, Boolean currentPhase, Boolean intermediatePhase, Boolean finalDestination,
+    public PhysicalDocument(Long id, Boolean intermediatePhase, Boolean finalDestination,
                             DataSurvey dataSurvey) {
         this.id = id;
-        this.currentPhase = currentPhase;
         this.intermediatePhase = intermediatePhase;
         this.finalDestination = finalDestination;
         this.dataSurvey = dataSurvey;
@@ -41,14 +40,6 @@ public class PhysicalDocument {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Boolean getCurrentPhase() {
-        return currentPhase;
-    }
-
-    public void setCurrentPhase(Boolean currentPhase) {
-        this.currentPhase = currentPhase;
     }
 
     public Boolean getIntermediatePhase() {

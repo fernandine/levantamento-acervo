@@ -1,5 +1,6 @@
 package com.levantamento.documental.acervo.config;
 
+import com.levantamento.documental.acervo.config.customgrant.CustomAccessTokenResponseHandler;
 import com.levantamento.documental.acervo.config.customgrant.CustomPasswordAuthenticationConverter;
 import com.levantamento.documental.acervo.config.customgrant.CustomPasswordAuthenticationProvider;
 import com.levantamento.documental.acervo.config.customgrant.CustomUserAuthorities;
@@ -76,7 +77,7 @@ public class AuthorizationServerConfig {
         // @formatter:off
         http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
                 .tokenEndpoint(tokenEndpoint -> tokenEndpoint
-                        //.accessTokenResponseHandler(new CustomAccessTokenResponseHandler(userRepository))
+                        .accessTokenResponseHandler(new CustomAccessTokenResponseHandler(userRepository))
                         .accessTokenRequestConverter(new CustomPasswordAuthenticationConverter())
                         .authenticationProvider(new CustomPasswordAuthenticationProvider(authorizationService(), tokenGenerator(), userDetailsService, passwordEncoder)));
 

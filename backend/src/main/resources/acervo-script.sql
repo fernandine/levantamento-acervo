@@ -1,16 +1,68 @@
--- -------------------------------------------
--- Usuários e perfis
--- -------------------------------------------
+CREATE DATABASE  IF NOT EXISTS `data-document`;
+USE `data-document`;
+
+CREATE TABLE tb_user (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  email VARCHAR(100),
+  password VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE tb_role (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  authority VARCHAR(20),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE tb_user_role (
+  user_id BIGINT NOT NULL,
+  role_id BIGINT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES tb_user(id),
+  FOREIGN KEY (role_id) REFERENCES tb_role(id)
+);
+
+CREATE TABLE tb_data_survey (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    area VARCHAR(255) NOT NULL,
+    documentary_study BOOLEAN NOT NULL,
+    classification BOOLEAN NOT NULL,
+    legal_analysis BOOLEAN NOT NULL,
+    auxiliary_document BOOLEAN NOT NULL,
+    tb_ged BOOLEAN NOT NULL,
+    submission BOOLEAN NOT NULL,
+    digital_quantitative INT NOT NULL,
+    physical_quantitative INT NOT NULL,
+    microfilm_quantitative INT NOT NULL
+);
+
+CREATE TABLE tb_physical_document (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    intermediate_phase BOOLEAN NOT NULL,
+    final_destination BOOLEAN NOT NULL,
+    data_survey_id INT,
+    FOREIGN KEY (data_survey_id) REFERENCES tb_data_survey(id)
+);
+
+CREATE TABLE tb_digital_document (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    current_phase BOOLEAN NOT NULL,
+    intermediate_phase BOOLEAN NOT NULL,
+    final_destination BOOLEAN NOT NULL,
+    data_survey_id INT,
+    FOREIGN KEY (data_survey_id) REFERENCES tb_data_survey(id)
+);
+
 INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('jean', 'fernandine', 'jfernandine@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
+INSERT INTO tb_user (first_name, last_name, email, password) VALUES ('Natiele', 'Dutra', 'na.dutra@fiemg.com.br', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
-INSERT INTO tb_role (authority) VALUES ('ROLE_DENTIST');
+INSERT INTO tb_role (authority) VALUES ('ROLE_USER');
 
-INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO tb_user_role (user_id, role_id) VALUES (1, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
-INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 1);
-
 
 INSERT INTO tb_data_survey (name, area, documentary_study, classification, legal_analysis, auxiliary_document, tb_ged, submission, digital_quantitative, physical_quantitative, microfilm_quantitative) VALUES ('Prestação de Contas e Movimento de Caixa', 'Gerência do Financeiro', FALSE, FALSE, FALSE,FALSE, FALSE, FALSE, 9481, 0, 0);
 INSERT INTO tb_data_survey (name, area, documentary_study, classification, legal_analysis, auxiliary_document, tb_ged, submission, digital_quantitative, physical_quantitative, microfilm_quantitative) VALUES ('Planilhas e Comprovantes Pronatec', 'Gerência do Financeiro', FALSE, FALSE, FALSE,FALSE, FALSE, FALSE, 9481, 0, 0);
@@ -505,8 +557,4 @@ INSERT INTO tb_physical_document (intermediate_phase, final_destination, data_su
 INSERT INTO tb_physical_document (intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, 161);
 INSERT INTO tb_physical_document (intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, 162);
 INSERT INTO tb_physical_document (intermediate_phase, final_destination, data_survey_id) VALUES (TRUE, FALSE, 163);
-
-
-
-
 

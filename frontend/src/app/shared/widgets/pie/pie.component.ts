@@ -1,21 +1,22 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Data } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_exporting from 'highcharts/modules/exporting';
+import { PieChart } from '../../../common/pie-chart';
 
 @Component({
   selector: 'app-widget-pie',
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.scss']
 })
-export class PieComponent implements OnInit {
+export class PieComponent {
 
   Highcharts = Highcharts;
   chartOptions = {};
 
-  @Input() data: Data[] = [];
+  @Input() pie: PieChart[] = [];
 
-  constructor() { }
+  constructor() {}
+
 
   ngOnInit() {
     this.chartOptions = {
@@ -23,35 +24,21 @@ export class PieComponent implements OnInit {
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false,
-        type: 'pie'
+        type: 'pie',
       },
       title: {
-        text: 'RANDOM DATA'
+        text: 'Quantitativos mais relevantes',
       },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      subtitle: {
+        text: 'Físico | Digital |  Micro Filmagem'
       },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-          }
-        }
-      },
-      exporting: {
-        enabled: true
-      },
-      credits: {
-        enabled: false
-      },
-      series: [{
-        name: 'Brands',
-        colorByPoint: true,
-        data: this.data
-      }]
+      series: [
+        {
+          name: 'Total',
+          colorByPoint: true,
+          data: this.pie,
+        },
+      ],
     };
 
     HC_exporting(Highcharts);
@@ -62,5 +49,4 @@ export class PieComponent implements OnInit {
       );
     }, 300);
   }
-
 }

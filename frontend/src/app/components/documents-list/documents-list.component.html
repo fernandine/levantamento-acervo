@@ -1,68 +1,120 @@
-<mat-table mat-table [dataSource]="data">
+<div>
+<mat-table fxLayout="column" mat-table [dataSource]="dataSource">
 
-  <ng-container matColumnDef="name">
-    <mat-header-cell class="column-header" *matHeaderCellDef>Assunto</mat-header-cell>
-    <mat-cell *matCellDef="let data">{{ data.name }}</mat-cell>
+  <ng-container  matColumnDef="name">
+    <mat-header-cell fxFlex="20%" class="column-header" *matHeaderCellDef>Assunto</mat-header-cell>
+    <mat-cell fxFlex="20%" *matCellDef="let data">{{ data.name }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="area">
-    <mat-header-cell class="column-header" *matHeaderCellDef>Área</mat-header-cell>
-    <mat-cell *matCellDef="let data">{{ data.area }}</mat-cell>
+    <mat-header-cell fxFlex="15%" class="column-header" *matHeaderCellDef>Área</mat-header-cell>
+    <mat-cell fxFlex="15%" *matCellDef="let data">{{ data.area }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="documentaryStudy">
     <mat-header-cell class="column-header" *matHeaderCellDef>Estudo Documental</mat-header-cell>
-    <mat-cell *matCellDef="let data">{{ data.documentaryStudy }}</mat-cell>
-  </ng-container>
+    <mat-cell *matCellDef="let data">
+      <span *ngIf="data.documentaryStudy; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template>
+    </mat-cell>
+    </ng-container>
+
+  <ng-container matColumnDef="classification">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Existência de Classificação Documental</mat-header-cell>
+    <mat-cell *matCellDef="let data">
+      <span *ngIf="data.classification; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template>
+    </mat-cell>
+    </ng-container>
+
+  <ng-container matColumnDef="ged">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Existência de GED</mat-header-cell>
+    <mat-cell *matCellDef="let data">
+      <span *ngIf="data.ged; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template>
+    </mat-cell>
+    </ng-container>
+
+  <ng-container matColumnDef="auxiliaryDocument">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Presente do Documento Auxiliar</mat-header-cell>
+    <mat-cell *matCellDef="let data">
+      <span *ngIf="data.auxiliaryDocument; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template>
+    </mat-cell>
+    </ng-container>
 
   <ng-container matColumnDef="legalAnalysis">
     <mat-header-cell class="column-header" *matHeaderCellDef>Análise Jurícia</mat-header-cell>
-    <mat-cell *matCellDef="let data">{{ data.legalAnalysis }}</mat-cell>
-  </ng-container>
+    <mat-cell *matCellDef="let data">
+      <span *ngIf="data.legalAnalysis; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template>
+    </mat-cell>
+    </ng-container>
 
   <ng-container matColumnDef="submission">
     <mat-header-cell class="column-header" *matHeaderCellDef>Submissão à comissão Permanente de Avaliação de Documentos</mat-header-cell>
-    <mat-cell *matCellDef="let data">{{ data.submission }}</mat-cell>
-  </ng-container>
+    <mat-cell *matCellDef="let data">
+      <span *ngIf="data.submission; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template>
+    </mat-cell>
+    </ng-container>
 
   <ng-container matColumnDef="digitalQuantitative">
     <mat-header-cell class="column-header" *matHeaderCellDef>Quantitativo Total de Acervo Físico</mat-header-cell>
-    <mat-cell *matCellDef="let data">{{ data.digitalQuantitative }}</mat-cell>
-  </ng-container>
+    <mat-cell *matCellDef="let data">
+      <span *ngIf="data.digitalQuantitative; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template>
+    </mat-cell>
+    </ng-container>
 
   <ng-container matColumnDef="physicalQuantitative">
     <mat-header-cell class="column-header" *matHeaderCellDef>Quantitativo Total de Acervo Digital</mat-header-cell>
-    <mat-cell *matCellDef="let data">{{ data.physicalQuantitative }}</mat-cell>
-  </ng-container>
+    <mat-cell *matCellDef="let data">
+      <span *ngIf="data.physicalQuantitative; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template>
+    </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="expand">
-    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-icon-button aria-label="expand row" (click)="(data = data === element ? null : element); $event.stopPropagation()">
-        <mat-icon *ngIf="data !== element">keyboard_arrow_down</mat-icon>
-        <mat-icon *ngIf="data === element">keyboard_arrow_up</mat-icon>
-      </button>
-    </td>
-  </ng-container>
-
-<!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-<ng-container matColumnDef="physicalDocument">
-  <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-    <div class="example-element-detail"
-         [@detailExpand]="element == data ? 'expanded' : 'collapsed'">
-      <div class="example-element-description">
-        {{element.currentPhase}}
-      </div>
-      <div class="example-element-description">
-        {{element.intermediatePhase}}
-      </div>
-      <div class="example-element-description">
-        {{element.finalDestination}}
-      </div>
-    </div>
-  </td>
-</ng-container>
+  <ng-container matColumnDef="microfilmQuantitative">
+    <mat-header-cell class="column-header" *matHeaderCellDef>Quantitativo de microfilmagem</mat-header-cell>
+    <mat-cell *matCellDef="let data">
+      <span *ngIf="data.microfilmQuantitative; else xIcon">
+        <mat-icon style="color: green">done</mat-icon>
+      </span>
+      <ng-template #xIcon
+        ><mat-icon style="color: red">clear</mat-icon></ng-template>
+    </mat-cell>
+    </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
+<mat-paginator style="background-color: rgb(198, 224, 224);"
+ [pageSizeOptions]="[5, 2, 10, 20]"
+ showFirstLastButtons
+ itemsPerPageLabel="Itens por página"></mat-paginator>
+</div>

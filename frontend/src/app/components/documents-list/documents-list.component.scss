@@ -1,15 +1,10 @@
 .mat-table {
   overflow: auto;
-  max-height: 800px;
+  max-height: 900px;
 }
 
 .action-column {
   flex: 0 0 200px;
-}
-
-.action-column-header {
-  position: absolute;
-  margin: 0 auto;
 }
 
 .column-all {
@@ -18,11 +13,14 @@
   align-items: center;
   margin: 0 auto;
 }
+mat-cell {
+  font-size: small;
+}
 .column-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-
+  font-size: small;
 }
