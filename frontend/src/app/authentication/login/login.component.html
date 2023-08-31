@@ -1,5 +1,5 @@
 <div class="page-container">
-  <img src="./../../../assets/fundo.jpg" alt="Imagem" class="background-image">
+<img src="https://storage.cloud.google.com/storage-acervo/fundo.jpg" alt="Imagem" class="background-image">
 
   <mat-card class="card">
     <h1 class="title">Login</h1>
@@ -17,7 +17,7 @@
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Mostrar Senha'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-          <mat-hint style="cursor: pointer;" routerLink="/recover-password" align="end">Esqueceu a senha?</mat-hint>
+          <mat-hint style="cursor: pointer;" (click)="recoverPass()" align="end">Esqueceu a senha?</mat-hint>
         </mat-form-field>
       </div>
 

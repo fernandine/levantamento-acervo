@@ -4,10 +4,6 @@ import com.levantamento.documental.acervo.DTOs.UserDto;
 import com.levantamento.documental.acervo.DTOs.UserInsertDto;
 import com.levantamento.documental.acervo.DTOs.UserUpdateDto;
 import com.levantamento.documental.acervo.services.UserService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +13,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-@Tag(name = "Usuários", description = "Controle de usuários")
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -46,11 +41,6 @@ public class UserController {
 //	}
 	
 	@PostMapping
-	@ApiOperation(value = "Criação de um novo usuário")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Usuário criado com sucesso"),
-			@ApiResponse(responseCode = "400", description = "Bad Request")
-	})
 	public ResponseEntity<UserDto> insert(@RequestBody @Valid UserInsertDto dto) {
 		UserDto newDto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

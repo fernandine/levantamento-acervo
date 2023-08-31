@@ -41,7 +41,9 @@ console.log(this.loginForm);
       });
     }
   }
-
+  recoverPass() {
+    this.router.navigate(['/recover-password']);
+  }
   onRegister() {
     this.router.navigate(['/register']);
   }
